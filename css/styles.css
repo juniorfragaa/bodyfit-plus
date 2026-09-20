@@ -9,6 +9,13 @@ body {
     color: #222;
     line-height: 1.5;
     background-color: var(--light-color);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex: 1;
 }
 
 :root {
@@ -166,4 +173,54 @@ footer {
     text-align: center;
     margin-top: 2rem;
     font-size: 0.9rem;
+}
+
+.about-intro {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 10rem;
+    padding: 1em 2rem;
+    text-align: left;
+}
+
+.about-text, .about-values {
+    flex: 1;
+}
+
+.about-values ul {
+    list-style: none;
+}
+
+.about-values li {
+    margin-bottom: 1rem;
+}
+
+.team {
+    text-align: center;
+    padding: 3rem 2rem;
+}
+
+.team-list {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.team-member {
+    max-width: 300px;
+    background-color: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+    border: 2px solid var(--dark-color);
+}
+
+.team-img {
+    width: 250px;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-bottom: 1rem;
 }
