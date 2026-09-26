@@ -19,7 +19,7 @@ main {
 }
 
 :root {
-    --primary-color: #ff6b35;
+    --primary-color: #ED1B2F;
     --dark-color: #1a1a1a;
     --light-color: #f4f4f4;
 }
@@ -31,6 +31,29 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.logo img {
+    height: 40px;
+    width: auto;
+}
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
 }
 
 nav ul {
@@ -168,6 +191,9 @@ footer {
     color: white;
     text-decoration: none;
 }
+.footer-column a:hover {
+    color: var(--primary-color)
+}
 
 .footer-bottom {
     text-align: center;
@@ -223,4 +249,58 @@ footer {
     object-fit: cover;
     border-radius: 50%;
     margin-bottom: 1rem;
+}
+
+.plans {
+    text-align: center;
+    padding: 3rem 2rem;
+}
+
+table {
+    width: 100%;
+    max-width: 900px;
+    margin: 2rem auto;
+    border-collapse: collapse;
+}
+
+th, td {
+    border: 1px solid var(--dark-color);
+    padding: 0.75rem;
+    text-align: center;
+}
+
+thead {
+    background-color: var(--dark-color);
+    color: white;
+}
+
+tbody tr:nth-child(even) {
+    background-color: var(--light-color);
+}
+
+tbody tr:nth-child(odd) {
+    background-color: white;
+}
+
+.equipment-gallery {
+    text-align: center;
+    padding: 3rem 2rem;
+}
+
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+figure img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+figcaption {
+    margin-top: 0.5rem;
+    font-weight: bold;
 }
