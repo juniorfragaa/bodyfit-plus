@@ -7,13 +7,18 @@
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
+    <!-- Header: logo + main navigation, repeated identically on every page for consistency -->
     <header>
+        <!-- Logo image is paired with a visually-hidden h1 (see .sr-only in CSS), so screen
+             readers still announce the brand name even though only the logo is shown -->
         <div class="logo">
             <img src="logo.png" alt="BodyFit Plus logo">
             <h1 class="sr-only">BodyFit Plus</h1>
         </div>
         <nav>
             <ul>
+                <!-- aria-current="page" tells assistive tech which page is currently open;
+                     it moves to a different link on each page -->
                 <li><a href="index.html" aria-current="page">Home</a></li>
                 <li><a href="about.html">About Us</a></li>
                 <li><a href="plans.html">Plans</a></li>
@@ -23,6 +28,8 @@
         </nav>
     </header>
     <main>
+    <!-- Hero section: the first thing visitors see - headline, photos, and a call-to-action
+         button pointing straight to the Plans page -->
     <section class="hero">
         <h2>Train Smart! Eat Right! See Results!</h2>
         <p> At BodyFit Plus, every membership includes real nutritionist and personal trainer support, it's not just gym access </p>
@@ -33,6 +40,7 @@
         </div>
         <a href="plans.html" class="cta-button">View our Plans</a>
     </section>
+ <!-- Features section: highlights the 3 key differentiators of the gym -->
  <section class="features">
     <h2>Why BodyFit Plus ?</h2>
     <div class="feature-list">
@@ -51,6 +59,8 @@
     </div>
 </section>
 
+<!-- Highlights section: testimonials and the demo video shown as two side-by-side columns
+     (each column is stretched to the same height using CSS flexbox, see .highlights in styles.css) -->
 <section class="highlights">
     <div class="testimonials">
         <h2>What Our Members Say</h2>
@@ -69,6 +79,14 @@
             </div>
         </div>
     </div>
+    <!-- Embedded YouTube video via iframe - adds a second type of media besides photos.
+         An <iframe> embeds another web page (here, YouTube's video player) inside this one:
+           - width/height: starting size in pixels (CSS later makes it stretch/resize)
+           - src: the special "embed" link YouTube generates for a video (different
+             from the normal watch link) - this is what actually loads the player
+           - title: a short description read by screen readers, since the iframe's
+             content itself isn't part of this page's HTML
+           - allowfullscreen: lets the visitor expand the video to fullscreen -->
     <div class="video">
         <h2>See How It Works</h2>
         <iframe width="640" height="360"
@@ -80,6 +98,7 @@
     </div>
 </section>
 </main>
+<!-- Footer: repeated identically on every page - brand blurb, quick links, and contact info -->
 <footer>
     <div class="footer-content">
         <div class="footer-column">

@@ -7,7 +7,10 @@
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
+    <!-- Header: logo + main navigation, repeated identically on every page for consistency -->
     <header>
+        <!-- Logo image is paired with a visually-hidden h1 (see .sr-only in CSS), so screen
+             readers still announce the brand name even though only the logo is shown -->
         <div class="logo">
             <img src="logo.png" alt="BodyFit Plus logo">
             <h1 class="sr-only">BodyFit Plus</h1>
@@ -16,6 +19,7 @@
             <ul>
                 <li><a href="index.html">Home</a></li>
                 <li><a href="about.html">About Us</a></li>
+                <!-- aria-current="page" marks this as the page currently open -->
                 <li><a href="plans.html" aria-current="page">Plans</a></li>
                 <li><a href="equipment.html">Equipment</a></li>
                 <li><a href="contact.html">Contact</a></li>
@@ -23,17 +27,26 @@
         </nav>
     </header>
     <main>
+        <!-- Membership comparison table: each row is a feature, each column is a plan
+             (Premium/Gold/Platinum); thead holds the plan names + prices, tbody holds the data -->
         <section class="plans">
     <h2>Choose Your Plan</h2>
     <table>
+        <!-- thead = the table's header row: the column titles (here, the plan
+             names and prices). Browsers style <th> as bold/centered by default -->
         <thead>
             <tr>
                 <th>Feature</th>
+                <!-- <br> forces a line break inside this single cell, so the plan
+                     name and its price sit on two separate lines instead of one -->
                 <th>Premium<br>€45/month</th>
                 <th>Gold<br>€60/month</th>
                 <th>Platinum<br>€80/month</th>
             </tr>
         </thead>
+        <!-- tbody = the table's body: every <tr> (row) here is one feature being
+             compared, with a <td> (plain data cell) for the feature name and one
+             more <td> per plan showing what that plan includes -->
         <tbody>
             <tr>
                 <td>Gym access</td>
@@ -100,6 +113,7 @@
     <a href="contact.html" class="cta-button">Get Started</a>
 </section>
     </main>
+    <!-- Footer: repeated identically on every page - brand blurb, quick links, and contact info -->
     <footer>
         <div class="footer-content">
             <div class="footer-column">

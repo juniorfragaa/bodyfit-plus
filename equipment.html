@@ -7,7 +7,10 @@
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
+    <!-- Header: logo + main navigation, repeated identically on every page for consistency -->
     <header>
+        <!-- Logo image is paired with a visually-hidden h1 (see .sr-only in CSS), so screen
+             readers still announce the brand name even though only the logo is shown -->
         <div class="logo">
             <img src="logo.png" alt="BodyFit Plus logo">
             <h1 class="sr-only">BodyFit Plus</h1>
@@ -17,15 +20,22 @@
                 <li><a href="index.html">Home</a></li>
                 <li><a href="about.html">About Us</a></li>
                 <li><a href="plans.html">Plans</a></li>
+                <!-- aria-current="page" marks this as the page currently open -->
                 <li><a href="equipment.html" aria-current="page">Equipment</a></li>
                 <li><a href="contact.html">Contact</a></li>
             </ul>
         </nav>
     </header>
     <main>
+        <!-- Equipment gallery: each <figure> pairs a photo with a <figcaption> naming it;
+             laid out as a 2-column CSS Grid (see .gallery in styles.css) -->
         <section class="equipment-gallery">
     <h2>Our Equipment</h2>
     <div class="gallery">
+        <!-- <figure> groups an image with its caption as one semantic unit - this is
+             the correct tag for "a picture with a caption", unlike a plain <div>.
+             <figcaption> is the caption itself, and is understood by screen readers
+             as describing the image right above it inside the same <figure>. -->
         <figure>
             <img src="1treadmills.jpeg" alt="Row of treadmills in the cardio area">
             <figcaption>Treadmills</figcaption>
@@ -69,6 +79,7 @@
     </div>
 </section>
     </main>
+    <!-- Footer: repeated identically on every page - brand blurb, quick links, and contact info -->
     <footer>
         <div class="footer-content">
             <div class="footer-column">

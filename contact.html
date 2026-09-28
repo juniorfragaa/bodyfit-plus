@@ -7,7 +7,10 @@
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
+    <!-- Header: logo + main navigation, repeated identically on every page for consistency -->
     <header>
+        <!-- Logo image is paired with a visually-hidden h1 (see .sr-only in CSS), so screen
+             readers still announce the brand name even though only the logo is shown -->
         <div class="logo">
             <img src="logo.png" alt="BodyFit Plus logo">
             <h1 class="sr-only">BodyFit Plus</h1>
@@ -18,39 +21,64 @@
                 <li><a href="about.html">About Us</a></li>
                 <li><a href="plans.html">Plans</a></li>
                 <li><a href="equipment.html">Equipment</a></li>
+                <!-- aria-current="page" marks this as the page currently open -->
                 <li><a href="contact.html" aria-current="page">Contact</a></li>
             </ul>
         </nav>
     </header>
     <main>
+        <!-- Contact form: validated entirely with JavaScript (js/script.js), not the browser's
+             built-in validation - that's why novalidate is used below. Each field has an empty
+             <span class="error-message"> next to it, which the JS fills in when a check fails -->
         <section class="contact-form-section">
     <h2>Get In Touch</h2>
     <p>Fill out the form below and we'll get back to you as soon as possible.</p>
+    <!-- novalidate turns off the browser's own error popups, so our own JS is fully in control -->
     <form id="contact-form" novalidate>
+        <!-- Each field follows the same pattern: a <label> describing it, the
+             <input>/<textarea> itself, and an empty <span> that JavaScript fills
+             with an error message if this specific field fails validation.
+             label's "for" must exactly match the input's "id" below it - that
+             link is what lets a screen reader announce "Name" when this field
+             gets focus, and lets clicking the word "Name" focus the input too. -->
         <div class="form-group">
             <label for="name">Name</label>
+            <!-- type="text" plus name="name" so the input has both an id (used by
+                 the label and by JavaScript) and a name (the standard attribute
+                 form fields are supposed to have) -->
             <input type="text" id="name" name="name">
             <span class="error-message" id="name-error"></span>
         </div>
         <div class="form-group">
             <label for="phone">Phone Number</label>
+            <!-- type="text" (not type="number" or type="tel") because those would
+                 let the browser add its own formatting/spinner controls - keeping
+                 it plain text means OUR JavaScript regex is the only thing checking it -->
             <input type="text" id="phone" name="phone">
             <span class="error-message" id="phone-error"></span>
         </div>
         <div class="form-group">
             <label for="email">Email</label>
+            <!-- type="email" gives mobile users an @ key on their keyboard, but the
+                 real validation of this field still happens in JavaScript (see the
+                 "email is required" check in js/script.js) -->
             <input type="email" id="email" name="email">
             <span class="error-message" id="email-error"></span>
         </div>
         <div class="form-group">
             <label for="message">Nature of Your Query</label>
+            <!-- <textarea> instead of <input> because it allows multiple lines of
+                 text; rows="5" sets its starting height to roughly 5 lines -->
             <textarea id="message" name="message" rows="5"></textarea>
             <span class="error-message" id="message-error"></span>
         </div>
+        <!-- type="submit" is what makes clicking this button trigger the form's
+             "submit" event that js/script.js is listening for -->
         <button type="submit">Send Message</button>
     </form>
 </section>
     </main>
+    <!-- Footer: repeated identically on every page - brand blurb, quick links, and contact info -->
     <footer>
         <div class="footer-content">
             <div class="footer-column">
@@ -75,6 +103,8 @@
         </div>
         <p class="footer-bottom">&copy; 2026 BodyFit Plus. All rights reserved.</p>
     </footer>
+    <!-- Loaded at the end of body so the form/inputs already exist in the page
+         before this script tries to find them -->
     <script src="js/script.js"></script>
 </body>
 </html>
