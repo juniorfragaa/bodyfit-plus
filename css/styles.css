@@ -70,6 +70,13 @@ header {
     gap: 0.5rem;          /* small space between the logo image and the text next to it */
 }
 
+.logo a {
+    display: flex;
+    align-items: center;
+    text-decoration: none; /* removes the default underline a link would have */
+    color: inherit;         /* keeps the link from turning the default blue color */
+}
+
 .logo img {
     height: 40px;  /* fixes the logo's height so it fits neatly in the header bar */
     width: auto;   /* lets the width scale automatically, keeping the logo's proportions */
