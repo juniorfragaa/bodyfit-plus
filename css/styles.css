@@ -1,210 +1,162 @@
-/* ============================================================
-   RESET
-   Every browser ships with slightly different default spacing
-   and box-sizing rules for elements (h1, p, ul, etc). This reset
-   makes sure the site looks the same everywhere by starting from
-   a clean, predictable baseline.
-   ============================================================ */
+/* Reset: removes default browser spacing so every page starts from the same baseline */
 * {
-    margin: 0;              /* removes the default outer spacing every element has */
-    padding: 0;              /* removes the default inner spacing every element has */
-    box-sizing: border-box;  /* width/height now INCLUDE padding and border, so a
-                                 300px-wide box stays 300px even after adding padding,
-                                 instead of growing past 300px */
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* padding/border no longer add to the element's set width */
 }
 
-/* ============================================================
-   BASE PAGE STYLES + STICKY FOOTER
-   ============================================================ */
+/* Base styles + sticky footer: body stretches to fill the screen, main grows to
+   push the footer to the bottom even on short pages */
 body {
-    font-family: Arial, sans-serif;    /* the default font for all text on the site */
-    color: #222;                       /* near-black text color, softer than pure black */
-    line-height: 1.5;                  /* space between lines of text, improves readability */
-    background-color: var(--light-color); /* light grey page background (see :root below) */
-
-    /* --- Sticky footer trick, explained in 3 steps --- */
-    min-height: 100vh;      /* 1) body is always AT LEAST the full height of the screen
-                                   (100vh = 100% of the viewport height), even if the
-                                   page content is short */
-    display: flex;          /* 2) turns body into a flex container, so header/main/footer
-                                   can be arranged and resized along one direction */
-    flex-direction: column; /*    ...stacked vertically (top to bottom), which is the
-                                   normal page layout */
+    font-family: Arial, sans-serif;
+    color: #222;
+    line-height: 1.5;
+    background-color: var(--light-color);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
 main {
-    flex: 1; /* 3) main grows to fill any leftover vertical space inside body - this is
-                   what pushes the footer down to the very bottom of the screen, even
-                   on pages with very little content */
+    flex: 1;
 }
 
-/* ============================================================
-   BRAND COLOR VARIABLES
-   Defining colors here once means changing the brand color later
-   only requires editing ONE line, instead of hunting through the
-   whole file for every place that color was used.
-   ============================================================ */
+/* Brand colors stored as variables, so they only need to change in one place */
 :root {
-    --primary-color: #ED1B2F; /* the accent/brand color (red) - buttons, hover states */
-    --dark-color: #1a1a1a;    /* near-black - header, footer, card borders */
-    --light-color: #f4f4f4;   /* light grey - page background, contrasting card fills */
+    --primary-color: #ED1B2F;
+    --dark-color: #1a1a1a;
+    --light-color: #f4f4f4;
 }
 
-/* ============================================================
-   HEADER / NAVIGATION
-   Repeated identically on every page.
-   ============================================================ */
+/* Header: dark bar, logo on one side and nav on the other */
 header {
-    background-color: var(--dark-color); /* dark bar across the top of every page */
-    color: white;                        /* makes text/links inside readable on dark bg */
-    padding: 1rem 2rem;                  /* breathing room: 1rem top/bottom, 2rem sides */
-    display: flex;                       /* lays the logo and nav out horizontally */
-    justify-content: space-between;      /* pushes logo to the left edge, nav to the right */
-    align-items: center;                 /* vertically centers logo and nav within the bar */
+    background-color: var(--dark-color);
+    color: white;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-/* Groups the logo image and the (visually hidden) site name so they act as one unit */
 .logo {
     display: flex;
-    align-items: center; /* keeps the image and text vertically aligned with each other */
-    gap: 0.5rem;          /* small space between the logo image and the text next to it */
+    align-items: center;
+    gap: 0.5rem;
 }
 
 .logo a {
     display: flex;
     align-items: center;
-    text-decoration: none; /* removes the default underline a link would have */
-    color: inherit;         /* keeps the link from turning the default blue color */
+    text-decoration: none;
+    color: inherit;
 }
 
 .logo img {
-    height: 40px;  /* fixes the logo's height so it fits neatly in the header bar */
-    width: auto;   /* lets the width scale automatically, keeping the logo's proportions */
+    height: 40px;
+    width: auto;
 }
 
-/* "Visually hidden" technique: keeps text available to screen readers while making it
-   completely invisible on screen. Used on the <h1>BodyFit Plus</h1> next to the logo,
-   since the logo image already shows the brand name visually. */
+/* Hides an element visually while screen readers can still read it */
 .sr-only {
-    position: absolute; /* takes the element out of the normal page flow, so it doesn't
-                            push other elements around or leave a gap */
-    width: 1px;          /* shrinks the box to basically nothing... */
+    position: absolute;
+    width: 1px;
     height: 1px;
     padding: 0;
-    margin: -1px;        /* ...and pulls that last 1px in so no trace is left */
-    overflow: hidden;     /* hides any text that doesn't fit inside that tiny 1px box */
-    clip: rect(0, 0, 0, 0); /* an older, more compatible way of clipping the box to nothing */
-    white-space: nowrap;  /* stops the long text from wrapping onto multiple lines and
-                             "leaking" outside the tiny box */
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
     border: 0;
 }
 
-/* Turns the navigation list into a horizontal menu instead of a bulleted vertical list */
+/* Nav menu: horizontal row instead of a bulleted list */
 nav ul {
-    list-style: none;  /* removes the default bullet points */
-    display: flex;      /* lays each <li> out side by side instead of stacked */
-    gap: 1.5rem;         /* space between each nav link */
+    list-style: none;
+    display: flex;
+    gap: 1.5rem;
 }
 
 nav a {
-    color: white;             /* nav links match the header's white text */
-    text-decoration: none;    /* removes the default underline under links */
+    color: white;
+    text-decoration: none;
 }
 
 nav a:hover {
-    color: var(--primary-color); /* link turns the brand red when the mouse hovers over it */
+    color: var(--primary-color);
 }
 
-/* ============================================================
-   HERO SECTION (Home page banner)
-   ============================================================ */
+/* Hero section (Home page banner) */
 .hero {
-    text-align: center;  /* centers the headline, paragraph, and button */
-    padding: 3rem 2rem;   /* generous spacing so the section doesn't feel cramped */
+    text-align: center;
+    padding: 3rem 2rem;
 }
 
-/* Lays the 3 hero photos out in a horizontal row */
 .hero-images {
     display: flex;
-    justify-content: center; /* centers the row of photos horizontally on the page */
-    gap: 1rem;                 /* space between each photo */
-    margin: 1.5rem 0;          /* space above/below the row, separating it from the text
-                                  and the button */
+    justify-content: center;
+    gap: 1rem;
+    margin: 1.5rem 0;
 }
 
 .hero-img {
-    max-width: 30%;   /* each photo can take up at most ~30% of the row's width, so
-                          all 3 fit side by side with room for the gaps */
-    height: auto;      /* keeps each photo's natural aspect ratio - nothing gets
-                          stretched or squashed out of shape */
-    border-radius: 8px; /* softens the photo's corners */
+    max-width: 30%;
+    height: auto;
+    border-radius: 8px;
 }
 
-/* Turns the "View our Plans" link into a solid, clickable-looking button */
+/* Turns a link into a solid button */
 .cta-button {
-    display: inline-block;              /* lets the link have padding/dimensions like a
-                                            block element, while still sitting inline */
-    background-color: var(--primary-color); /* solid brand-red background */
+    display: inline-block;
+    background-color: var(--primary-color);
     color: white;
-    padding: 0.75rem 1.5rem;             /* makes the button chunky enough to tap/click easily */
-    text-decoration: none;               /* removes the default link underline */
-    border-radius: 6px;                  /* rounded corners for a modern button look */
-    margin-top: 1rem;                    /* separates the button from the content above it */
+    padding: 0.75rem 1.5rem;
+    text-decoration: none;
+    border-radius: 6px;
+    margin-top: 1rem;
 }
 
 .cta-button:hover {
-    color: var(--dark-color); /* text darkens on hover, giving visual feedback */
+    color: var(--dark-color);
 }
 
-/* ============================================================
-   FEATURES SECTION ("Why BodyFit Plus")
-   ============================================================ */
+/* Features section ("Why BodyFit Plus") */
 .features {
     text-align: center;
     padding: 3rem 2rem;
 }
 
-/* Lays the 3 feature cards out side by side */
 .feature-list {
     display: flex;
-    justify-content: center; /* centers the row of cards on the page */
-    gap: 2rem;                 /* space between each card */
-    margin-top: 2rem;          /* separates the cards from the heading above them */
+    justify-content: center;
+    gap: 2rem;
+    margin-top: 2rem;
 }
 
-/* Shared "card" look, reused for .feature, .testimonial and .team-member so the
-   whole site feels visually consistent */
+/* Shared card style, reused for .feature, .testimonial and .team-member */
 .feature {
-    max-width: 300px;                   /* stops each card from growing too wide */
-    background-color: white;             /* white card stands out against the grey page */
-    padding: 1.5rem;                     /* keeps the text from touching the card's edges */
-    border-radius: 8px;                  /* rounded card corners */
-    border: 2px solid var(--dark-color); /* dark outline that reinforces the brand colors */
+    max-width: 300px;
+    background-color: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+    border: 2px solid var(--dark-color);
 }
 
-/* ============================================================
-   HIGHLIGHTS SECTION (Testimonials + Video, 2-column row)
-   ============================================================ */
-/* NOTE: .highlights appears twice in this file (here, and again further down).
-   In CSS, when the same selector is defined twice, the LAST one defined wins -
-   so the second .highlights block (with align-items: stretch) is the one that
-   actually applies. The first one is left over from an earlier version. */
+/* Highlights section: testimonials + video, two columns of equal height */
 .highlights {
     display: flex;
-    align-items: flex-start;
+    align-items: stretch;
     gap: 3rem;
     padding: 3rem 2rem;
 }
 
 .testimonials {
-    flex: 1; /* makes this column grow to take up half of the row's available width */
+    flex: 1;
 }
 
-/* Stacks the 3 testimonial cards vertically, one under another, inside their column */
 .testimonial-list {
     display: flex;
-    flex-direction: column; /* switches the flex direction from row to column */
-    gap: 1rem;                /* vertical space between each testimonial card */
+    flex-direction: column;
+    gap: 1rem;
     margin-top: 1rem;
 }
 
@@ -212,59 +164,43 @@ nav a:hover {
     background-color: white;
     padding: 1.5rem;
     border-radius: 8px;
-    border: 2px solid var(--dark-color); /* same card style as .feature, for consistency */
+    border: 2px solid var(--dark-color);
 }
 
 .testimonial span {
-    display: block;       /* makes the customer's name sit on its own line below the quote */
+    display: block;
     margin-top: 1rem;
-    font-weight: bold;     /* makes the name stand out from the quoted text */
-}
-
-/* This is the version of .highlights that actually takes effect (see note above) */
-.highlights {
-    display: flex;
-    align-items: stretch; /* forces both columns (testimonials + video) to match the
-                              height of whichever one is taller, instead of leaving a
-                              gap under the shorter one */
-    gap: 3rem;
-    padding: 3rem 2rem;
+    font-weight: bold;
 }
 
 .video {
-    flex: 1;                  /* takes up the other half of the row, matching .testimonials */
-    display: flex;            /* turns this column itself into a flex container... */
-    flex-direction: column;   /* ...so its heading and iframe can stack and stretch inside it */
+    flex: 1;
+    display: flex;
+    flex-direction: column;
 }
 
 .video iframe {
-    flex: 1;         /* makes the video grow to fill all the leftover height in its column,
-                         so it lines up with the bottom of the testimonial list next to it */
-    width: 100%;      /* video fills the full width of its column */
-    margin-top: 1rem; /* matches the gap the testimonial-list has above its first card */
+    flex: 1;
+    width: 100%;
+    margin-top: 1rem;
 }
 
-/* ============================================================
-   FOOTER
-   Repeated identically on every page.
-   ============================================================ */
+/* Footer: same dark style as the header, repeated on every page */
 footer {
-    background-color: var(--dark-color); /* same dark tone as the header, for consistency */
+    background-color: var(--dark-color);
     color: white;
     padding: 2rem;
 }
 
-/* Lays the 3 footer columns (brand blurb / quick links / contact) out side by side */
 .footer-content {
     display: flex;
     justify-content: center;
     gap: 3rem;
-    flex-wrap: wrap; /* if the screen is too narrow to fit all 3 columns in one row,
-                         extra columns drop down to a new line instead of squeezing */
+    flex-wrap: wrap;
 }
 
 .footer-column ul {
-    list-style: none; /* removes bullets from the "Quick Links" list */
+    list-style: none;
 }
 
 .footer-column a {
@@ -273,50 +209,43 @@ footer {
 }
 
 .footer-column a:hover {
-    color: var(--primary-color); /* footer links also turn brand-red on hover, matching nav */
+    color: var(--primary-color);
 }
 
 .footer-bottom {
     text-align: center;
     margin-top: 2rem;
-    font-size: 0.9rem; /* slightly smaller text for the fine-print copyright line */
+    font-size: 0.9rem;
 }
 
-/* ============================================================
-   ABOUT US PAGE
-   ============================================================ */
-/* Puts "Our Story" and "Our Values" in two side-by-side columns */
+/* About Us: Our Story + Our Values side by side */
 .about-intro {
     display: flex;
     justify-content: center;
-    align-items: flex-start; /* aligns both column headings to the top, even though the
-                                 story paragraph is much taller than the values list */
-    gap: 10rem;                /* wide gap keeps the two columns clearly separated */
+    align-items: flex-start;
+    gap: 10rem;
     padding: 1em 2rem;
-    text-align: left;          /* left-aligned reads better in narrow columns than centered */
+    text-align: left;
 }
 
 .about-text, .about-values {
-    flex: 1; /* each column takes up half of the row's width */
+    flex: 1;
 }
 
 .about-values ul {
-    list-style: none; /* the emoji at the start of each value already acts as a visual marker,
-                          so the default bullet point isn't needed */
+    list-style: none;
 }
 
 .about-values li {
-    margin-bottom: 1rem; /* space between each value in the list */
+    margin-bottom: 1rem;
 }
 
-/* Meet the Team section */
+/* Meet the Team */
 .team {
     text-align: center;
     padding: 3rem 2rem;
 }
 
-/* Lays the 5 profile cards out side by side, wrapping onto extra rows if they
-   don't all fit across the screen width */
 .team-list {
     display: flex;
     justify-content: center;
@@ -330,52 +259,43 @@ footer {
     background-color: white;
     padding: 1.5rem;
     border-radius: 8px;
-    border: 2px solid var(--dark-color); /* same card style used across the site */
+    border: 2px solid var(--dark-color);
 }
 
+/* object-fit crops the photo to fill the circle instead of stretching it */
 .team-img {
     width: 250px;
     height: 300px;
-    object-fit: cover;    /* crops the photo to completely fill the box above, instead
-                              of squashing/stretching it to fit */
-    border-radius: 50%;   /* turns the (now square-cropped) photo into a circle -
-                              a common "profile picture" style */
+    object-fit: cover;
+    border-radius: 50%;
     margin-bottom: 1rem;
 }
 
-/* ============================================================
-   PLANS PAGE (pricing table)
-   ============================================================ */
+/* Plans page: pricing table */
 .plans {
     text-align: center;
     padding: 3rem 2rem;
 }
 
 table {
-    width: 100%;               /* table fills its container... */
-    max-width: 900px;           /* ...but never grows wider than 900px, so rows of text
-                                    don't get uncomfortably long on big screens */
-    margin: 2rem auto;          /* 2rem above/below, and "auto" left/right centers the table */
-    border-collapse: collapse; /* merges each cell's border with its neighbour's border,
-                                   instead of showing a thicker, doubled-up line between them */
+    width: 100%;
+    max-width: 900px;
+    margin: 2rem auto;
+    border-collapse: collapse; /* merges cell borders instead of doubling them */
 }
 
 th, td {
-    border: 1px solid var(--dark-color); /* thin border around every cell */
-    padding: 0.75rem;                     /* space between the text and the cell's border */
-    text-align: center;                   /* centers text/checkmarks in every cell */
+    border: 1px solid var(--dark-color);
+    padding: 0.75rem;
+    text-align: center;
 }
 
-/* The header row (plan names + prices) gets the same dark styling as the site's
-   header/footer, tying the table visually back into the rest of the page */
 thead {
     background-color: var(--dark-color);
     color: white;
 }
 
-/* :nth-child(even) / :nth-child(odd) select every other row, creating a "zebra
-   stripe" pattern that makes it easier to read across a long row without losing
-   your place */
+/* Zebra stripes: alternating row colors make the table easier to read */
 tbody tr:nth-child(even) {
     background-color: var(--light-color);
 }
@@ -384,72 +304,62 @@ tbody tr:nth-child(odd) {
     background-color: white;
 }
 
-/* ============================================================
-   EQUIPMENT PAGE (photo gallery)
-   ============================================================ */
+/* Equipment page: photo gallery */
 .equipment-gallery {
     text-align: center;
     padding: 3rem 2rem;
 }
 
-/* CSS Grid, set to exactly 2 equal-width columns. "1fr" means "1 fraction of the
-   available space" - repeating it twice splits the row into two equal halves.
-   With 10 <figure> items inside, the grid automatically wraps them into 5 rows. */
+/* CSS Grid with 2 equal columns; photos wrap into new rows automatically */
 .gallery {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 1.5rem;      /* space between every photo, both horizontally and vertically */
+    gap: 1.5rem;
     margin-top: 2rem;
 }
 
 figure img {
-    width: 100%;   /* photo fills the width of its grid cell */
-    height: auto;   /* height follows the photo's natural proportions, so nothing inside
-                       the picture (like an equipment label) ever gets cropped off */
+    width: 100%;
+    height: auto;
     border-radius: 8px;
 }
 
 figcaption {
-    margin-top: 0.5rem; /* small gap between the photo and its caption text below it */
-    font-weight: bold;   /* makes the equipment name stand out */
+    margin-top: 0.5rem;
+    font-weight: bold;
 }
 
-/* ============================================================
-   CONTACT PAGE (validated form)
-   ============================================================ */
+/* Contact page: validated form */
 .contact-form-section {
-    max-width: 600px; /* keeps the form a comfortable, readable width... */
-    margin: 0 auto;     /* ...and centers it on the page */
+    max-width: 600px;
+    margin: 0 auto;
     padding: 3rem 2rem;
 }
 
 .form-group {
-    margin-bottom: 1.5rem; /* space between one field (label+input+error) and the next */
+    margin-bottom: 1.5rem;
 }
 
 .form-group label {
-    display: block;         /* by default a <label> is inline (sits next to its input);
-                                this makes it sit on its own line ABOVE the input instead */
+    display: block;
     margin-bottom: 0.5rem;
     font-weight: bold;
 }
 
 .form-group input,
 .form-group textarea {
-    width: 100%;                          /* fields stretch to fill the form's width */
-    padding: 0.75rem;                     /* comfortable space inside each field */
+    width: 100%;
+    padding: 0.75rem;
     border: 1px solid var(--dark-color);
     border-radius: 6px;
-    font-family: inherit; /* by default, some browsers give form fields a different font
-                              than the rest of the page - this forces it to match */
+    font-family: inherit;
 }
 
-/* Error text is filled into these (empty by default) <span> elements by js/script.js
-   whenever a field fails validation */
+/* Filled in by js/script.js when a field fails validation */
 .error-message {
-    display: block;         /* puts the error message on its own line below the field */
-    color: red;              /* red draws attention to the problem */
-    font-size: 0.9rem;       /* slightly smaller than normal text, like a caption */
+    display: block;
+    color: red;
+    font-size: 0.9rem;
     margin-top: 0.25rem;
 }
 
@@ -457,13 +367,12 @@ form button {
     background-color: var(--primary-color);
     color: white;
     padding: 0.75rem 1.5rem;
-    border: none;      /* removes the browser's default grey 3D-looking button border */
+    border: none;
     border-radius: 6px;
-    cursor: pointer;   /* changes the mouse cursor to a hand/pointer on hover, signalling
-                          that the button is clickable */
+    cursor: pointer;
     font-size: 1rem;
 }
 
 form button:hover {
-    background-color: var(--dark-color); /* button darkens on hover for visual feedback */
+    background-color: var(--dark-color);
 }
